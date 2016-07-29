@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+    </style>
+</head>
+<body>
+<input type='button' value='Goto TW'
+       onclick="moveTo(24.150464, 120.650746)" /><br />
+<input type='button' value='get name' onclick="getName()">
+<input type='text' id="urname" /><br />
+<div id='showname'></div>
+<hr />
+<div id="map"></div>
+<script type="text/javascript">
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+
+  noticeToAndroidInit();
+}
+
+function noticeToAndroidInit(){
+    window.brad.showNewPlace();
+}
+
+function moveTo(newlat, newlng){
+    map.setCenter({lat: newlat, lng: newlng});
+    map.setZoom(14);
+}
+
+function getName(){
+    var urname = document.getElementById('urname');
+    document.getElementById('showname').innerHTML =
+                        urname.value;
+
+    window.brad.showName('Hello, ' + urname.value);
+
+}
+
+    </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script>
+</body>
+</html>
